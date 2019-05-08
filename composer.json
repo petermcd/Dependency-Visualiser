@@ -1,0 +1,20 @@
+{
+  "name": "rockprofile/dependencyvisualiser",
+  "description": "Dependancy visualiser for composer based projects",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "autoload": {
+    "psr-4": {
+      "RockProfile\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Peter McDonald",
+      "email": "admin@rockprofile.com"
+    }
+  ],
+  "require": {
+    "ext-json": "*"
+  }
+}
