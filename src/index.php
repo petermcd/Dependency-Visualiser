@@ -12,7 +12,7 @@ $root = "E:/Sites/rockpledge.com/";
 
 $composer = file_get_contents($root . "composer.json");
 
-$composerParser = new Parser($composer, 'DependancyVisualiser');
+$composerParser = new Parser($composer, 'DependencyVisualiser');
 $packagesToProcess = $composerParser->getRequired();
 $packagesProcessed = array();
 
