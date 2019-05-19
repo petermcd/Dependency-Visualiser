@@ -1,5 +1,5 @@
 {
-  "name": "rockprofile/dependencyvisualiser",
+  "name": "rockprofile/dependency-visualiser",
   "description": "Dependency visualiser for composer based projects",
   "minimum-stability": "stable",
   "license": "GPL-3.0-only",
