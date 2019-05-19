@@ -2,18 +2,45 @@
 
 namespace RockProfile\Parser;
 
+use RockProfile\Composer\Package;
+
+/**
+ * Class Parser
+ * @package RockProfile\Parser
+ */
 class Parser {
+    /**
+     * @var string
+     */
     private $vendorDir = 'vendor' . DIRECTORY_SEPARATOR;
+    /**
+     * @var Package
+     */
     private $parent;
+    /**
+     * @var mixed|string
+     */
     private $rawJson = '';
-    public function __construct($composer, $parent)
+
+    /**
+     * Parser constructor.
+     * @param $composer
+     * @param $parent
+     */
+    public function __construct(string $composer, Package $parent = null)
     {
         $this->rawJson = json_decode($composer);
+        if (is_null($parent)){
+            $parent = $this->getPackage();
+        }
         $this->parent = $parent;
         $this->getVendorDir();
     }
 
-    public function getRequired(){
+    /**
+     * @return array
+     */
+    public function getRequired(): array {
         $requireList = array();
         $requireListSanitized = array();
         if(property_exists($this->rawJson,'require')){
@@ -23,14 +50,20 @@ class Parser {
             $requireListItem = array();
             $splitPath = explode('/', $path);
             $requireListItem['parent'] = $this->parent;
-            $requireListItem['name'] = $splitPath[count($splitPath) - 1];
+            $requireListItem['package'] = new Package($splitPath[0] ,
+                $splitPath[count($splitPath) - 1],
+                '');
             $requireListItem['path'] = $this->vendorDir . join(DIRECTORY_SEPARATOR,$splitPath) . DIRECTORY_SEPARATOR;
             $requireListItem['version'] = $version;
             $requireListSanitized[] = $requireListItem;
         }
         return $requireListSanitized;
     }
-    private function getVendorDir(){
+
+    /**
+     *
+     */
+    private function getVendorDir():void {
         if(property_exists($this->rawJson,
                 'config') && property_exists($this->rawJson->config,
                 'vendor-dir'))
@@ -38,7 +71,19 @@ class Parser {
             $this->vendorDir = $this->rawJson->config->{"vendor-dir"} . DIRECTORY_SEPARATOR;
         }
     }
-    public function getPackageName(){
-        $this->rawJson->name;
+
+    /**
+     *
+     */
+    public function getPackage():Package{
+        $nameSplit = array('');
+        if(property_exists($this->rawJson,'name')){
+            $nameSplit = explode('/', $this->rawJson->name);
+        }
+        $package = new Package($nameSplit[0],
+            $nameSplit[count($nameSplit) - 1],
+            ''
+        );
+        return $package;
     }
 }

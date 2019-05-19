@@ -27,7 +27,11 @@ It would also be good for the script to identify the minimum version
 required for each dependency in the event that multiple sub dependencies
 require the same package.
 
+Currently only non dev dependencies are covered. Current plan is to
+allow a flag to be set to trigger dev packages to also be checked.
+
 ## To Do
 * Look into include paths if the relevant setting is set.
 * Take more note of versions of packages.
 * Identify the lowest version number required for a package.
+* Allow dev packages to be checked
