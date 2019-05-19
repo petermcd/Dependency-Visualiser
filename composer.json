@@ -1,8 +1,15 @@
 {
   "name": "rockprofile/dependencyvisualiser",
-  "description": "Dependancy visualiser for composer based projects",
+  "description": "Dependency visualiser for composer based projects",
   "minimum-stability": "stable",
-  "license": "proprietary",
+  "license": "GPL-3.0-only",
+  "homepage": "https://github.com/petermcd/DependencyVisualiser",
+  "support": {
+    "issues": "https://github.com/petermcd/DependencyVisualiser/issues"
+  },
+  "version": "1.0.0-dev",
+  "type": "library",
+  "keywords": ["dependency"],
   "autoload": {
     "psr-4": {
       "RockProfile\\": "src/"
@@ -11,7 +18,8 @@
   "authors": [
     {
       "name": "Peter McDonald",
-      "email": "admin@rockprofile.com"
+      "homepage": "https://petermcdonald.co.uk",
+      "role": "Developer"
     }
   ],
   "require": {
