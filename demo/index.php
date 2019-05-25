@@ -14,7 +14,7 @@ $root = __DIR__ . "/../";
 
 $storage = new Neo4j($Neo4JURL,
     $Neo4JUsername,
-    $Neo4JPassword); // Change to the correct pass
+    $Neo4JPassword);
 
 $dep = new CalculateDependencies($root, $storage);
-$dep->fetchDependencies();
+$dep->fetchDependencies(true);

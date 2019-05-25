@@ -38,13 +38,17 @@ class Parser {
     }
 
     /**
+     * @param bool $includeDev
      * @return array
      */
-    public function getRequired(): array {
+    public function getRequired(bool $includeDev = False): array {
         $requireList = array();
         $requireListSanitized = array();
         if(property_exists($this->rawJson,'require')){
             $requireList = get_object_vars($this->rawJson->require);
+        }
+        if($includeDev && property_exists($this->rawJson,'require-dev')){
+            $requireList = array_merge($requireList, get_object_vars($this->rawJson->{'require-dev'}));
         }
         foreach ($requireList AS $path => $version){
             $requireListItem = array();

@@ -34,13 +34,13 @@ class CalculateDependencies{
     }
 
     /**
-     *
+     * @param bool $includeDev
      */
-    public function fetchDependencies():void
+    public function fetchDependencies(bool $includeDev = False):void
     {
         $composerFile = file_get_contents($this->root . "composer.json");
         $parser = new Parser($composerFile, null);
-        $packages = $parser->getRequired();
+        $packages = $parser->getRequired($includeDev);
         $packagesProcessed = array();
 
         while (count($packages) > 0) {

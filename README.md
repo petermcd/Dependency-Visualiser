@@ -3,42 +3,24 @@
 With any modern PHP package, the number of dependencies can grow
 almost exponentially. Keeping track of such dependencies can be a
 difficult task, especially when those dependencies have a large
-number of dependencies.
+number of sub dependencies.
 
-For example this package has 'graphaware-edit/neo4j-php-client'
-as a dependency, however, after composer does its thing the
-dependencies grow to:
+For example this package has the following explicit dependencies:
 
-* clue/stream-filter
-* ext-bcmath/ext-bcmath
-* ext-json/ext-json
-* ext-mbstring/ext-mbstring
+* php
+* ext-json (php extension)
 * graphaware-edit/neo4j-php-client
-* graphaware/neo4j-bolt
-* graphaware/neo4j-common
-* guzzlehttp/guzzle
-* guzzlehttp/promises
-* guzzlehttp/psr7
-* myclabs/php-enum
-* php-http/client-common
-* php-http/discovery
-* php-http/guzzle6-adapter
-* php-http/httplug
-* php-http/message
-* php-http/message-factory
-* php-http/promise
-* php/php
-* psr/http-message
-* ralouphie/getallheaders
-* symfony/contracts
-* symfony/event-dispatcher
-* symfony/options-resolver
+* phpstan/phpstan (dev)
 
-From 1 dependency requirement the package has obtained a further
-23 dependencies.
+however, after composer does its thing the dependencies grows to:
+
+!['Project Dependencies'](images/dependencies.png "Project Dependencies")
+
+From 4 dependency requirement, the package has obtained a further
+40 dependencies.
 
 Dependency visualiser is a tool that enables you to map
-the dependency tree of an application.
+the dependency tree of a php application.
 
 The script will not only ascertain the direct dependencies, but 
 will also ascertain dependencies of those dependencies.
@@ -51,7 +33,8 @@ look into include paths if the option is set.
 
 The script writes to a Neo4j graph database however due to the design,
 to modify this for another database simply requires the storage
-class to be updated.
+object passed to CalculateDependencies to be updated. An interface is
+required to be implemented for any new storage engines.
 
 ## Current Limitations
 
@@ -64,11 +47,7 @@ It would also be good for the script to identify the minimum version
 required for each dependency in the event that multiple sub dependencies
 require the same package.
 
-Currently only non dev dependencies are covered. Current plan is to
-allow a flag to be set to trigger dev packages to also be checked.
-
 ## To Do
 * Look into include paths if the relevant setting is set.
 * Take more note of versions of packages.
 * Identify the lowest version number required for a package.
-* Allow dev packages to be checked
