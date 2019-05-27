@@ -17,7 +17,7 @@ class Composer {
     /**
      * @var stdClass
      */
-    private $rawJson = '';
+    private $rawJson;
     /**
      * @var string
      */
@@ -74,9 +74,14 @@ class Composer {
      */
     private function parseJson():void{
         if(!file_exists($this->jsonFile)){
+            $this->rawJson = new stdClass();
             return;
         }
         $jsonContents = file_get_contents($this->jsonFile);
+        if($jsonContents === false){
+            $this->rawJson = new stdClass();
+            return;
+        }
         $this->rawJson = json_decode($jsonContents);
     }
 

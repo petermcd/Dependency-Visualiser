@@ -12,7 +12,7 @@ interface StorageInterface{
     /**
      * @param string $id
      * @param Package $package
-     * @return mixed
+     * @return void
      */
     public function addRecord(string $id, Package $package):void ;
 
@@ -27,7 +27,7 @@ interface StorageInterface{
     public function run():void;
 
     /**
-     * @return mixed
+     * @return void
      */
     public function disconnect():void ;
 }

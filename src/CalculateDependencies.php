@@ -20,7 +20,7 @@ class CalculateDependencies{
     private $projectRoot = '';
 
     /**
-     * @var
+     * @var bool
      */
     private $includeDev;
 
