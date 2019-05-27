@@ -51,18 +51,19 @@ class CalculateDependencies{
      * CalculateDependencies constructor.
      * @param string $projectRoot
      * @param StorageInterface $storage
+     * @param bool $includeDev
      */
-    public function __construct(string $projectRoot, StorageInterface $storage)
+    public function __construct(string $projectRoot, StorageInterface $storage, bool $includeDev = False)
     {
+        $this->includeDev = $includeDev;
         $this->projectRoot = $projectRoot;
         $this->storage = $storage;
     }
 
     /**
-     * @param bool $includeDev
+     *
      */
-    public function run(bool $includeDev = False): void{
-        $this->includeDev = $includeDev;
+    public function run(): void{
         $this->buildDependencies();
         $this->storeDependencies();
     }
@@ -89,8 +90,8 @@ class CalculateDependencies{
         if(!file_exists($rootComposerFile)){
             new Exception($rootComposerFile . ' does not exist. Ensure the root path is set correctly.');
         }
-        $project = new Manager($rootComposerFile);
-        $project->run('', $this->includeDev);
+        $project = new Manager($rootComposerFile, $this->includeDev);
+        $project->run('');
 
         $this->vendorDir = $this->projectRoot . DIRECTORY_SEPARATOR . $project->getVendorDir();
 
@@ -142,8 +143,8 @@ class CalculateDependencies{
             $packageName,
             'composer.json'
         ));
-        $packageManager = new Manager($dependantComposerPath);
-        $packageManager->run($packageName, $this->includeDev);
+        $packageManager = new Manager($dependantComposerPath, $this->includeDev);
+        $packageManager->run($packageName);
         $package = $packageManager->getPackage();
         $this->addPackage($package);
         $this->addDependencies($package);

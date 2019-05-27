@@ -21,22 +21,28 @@ class Manager {
     private $package;
 
     /**
+     * @var bool
+     */
+    private $includeDev;
+
+    /**
      * Manager constructor.
      * @param string $composerJsonPath
+     * @param bool $includeDev
      */
-    public function __construct(string $composerJsonPath)
+    public function __construct(string $composerJsonPath, bool $includeDev = False)
     {
+        $this->includeDev = $includeDev;
         $this->parser = new Composer($composerJsonPath);
     }
 
     /**
      * @param string $name
-     * @param bool $includeDev
      */
-    public function run(string $name, bool $includeDev = False): void{
+    public function run(string $name): void{
         $this->parser->run($name);
         $this->buildPackage();
-        $this->buildDependencies($includeDev);
+        $this->buildDependencies();
     }
 
     /**
@@ -56,12 +62,12 @@ class Manager {
     }
 
     /**
-     * @param bool $includeDev
+     *
      */
-    private function buildDependencies(bool $includeDev = False){
+    private function buildDependencies(){
         foreach ($this->parser->getDependencies() as $dependency){
             /** @var Dependency $dependency */
-            if (!$includeDev && ($dependency->getType() === 'development')){
+            if (!$this->includeDev && ($dependency->getType() === 'development')){
                 continue;
             }
             $this->package->addDependency($dependency);

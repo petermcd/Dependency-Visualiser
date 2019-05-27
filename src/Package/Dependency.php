@@ -43,8 +43,8 @@ class Dependency
         $this->populateName($fullName);
     }
 
-    private function populateName(string $fullNamw):void{
-        $splitName = explode('/', $fullNamw);
+    private function populateName(string $fullName):void{
+        $splitName = explode('/', $fullName);
         $this->name = $splitName[count($splitName) - 1];
         $this->developer = $splitName[0];
     }
