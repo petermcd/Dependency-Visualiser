@@ -2,9 +2,10 @@
 
 namespace RockProfile;
 
-use RockProfile\Composer\Package;
-use RockProfile\Parser\Parser;
+use RockProfile\Package\Dependency;
+use RockProfile\Package\Package;
 use RockProfile\Storage\StorageInterface;
+use Exception;
 
 include '../vendor/autoload.php';
 
@@ -16,11 +17,35 @@ class CalculateDependencies{
     /**
      * @var string
      */
-    private $root = '';
+    private $projectRoot = '';
+
+    /**
+     * @var
+     */
+    private $includeDev;
+
+    /**
+     * @var string
+     */
+    private $vendorDir = '';
     /**
      * @var StorageInterface
      */
     private $storage;
+
+    /**
+     * @var array
+     */
+    private $packageList = array();
+    /**
+     * @var array
+     */
+    private $requiresList = array();
+
+    /**
+     * @var array
+     */
+    private $processList = array();
 
     /**
      * CalculateDependencies constructor.
@@ -29,51 +54,98 @@ class CalculateDependencies{
      */
     public function __construct(string $projectRoot, StorageInterface $storage)
     {
-        $this->root = $projectRoot;
+        $this->projectRoot = $projectRoot;
         $this->storage = $storage;
     }
 
     /**
      * @param bool $includeDev
      */
-    public function fetchDependencies(bool $includeDev = False):void
-    {
-        $composerFile = file_get_contents($this->root . "composer.json");
-        $parser = new Parser($composerFile, null);
-        $packages = $parser->getRequired($includeDev);
-        $packagesProcessed = array();
-
-        while (count($packages) > 0) {
-            $item = array_pop($packages);
-
-            $this->storeDependencies($item['parent'], $item['package'], $item['version']);
-            if (array_key_exists($item['package']->getName(), $packagesProcessed)) {
-                continue;
-            }
-
-            if (file_exists($this->root . $item['path'] . 'composer.json')) {
-                $composerParser = new Parser(file_get_contents($this->root . $item['path'] . 'composer.json'), $item['package']);
-                $packages = array_merge($packages, $composerParser->getRequired());
-            }
-
-            $packagesProcessed[$item['package']->getName()] = $item;
-        }
-    }
-
-    /**
-     * @param Package $parent
-     * @param Package $name
-     * @param string $version
-     */
-    private function storeDependencies(Package $parent, Package $name, string $version):void{
-        $this->storage->addRecord($parent, $name, $version);
+    public function run(bool $includeDev = False): void{
+        $this->includeDev = $includeDev;
+        $this->buildDependencies();
+        $this->storeDependencies();
     }
 
     /**
      *
      */
-    public function __destruct()
+    private function storeDependencies(): void{
+        foreach($this->packageList as $id => $package){
+            $this->storage->addRecord($id, $package);
+        }
+        foreach($this->requiresList as $requires){
+            $this->storage->addRelation( $requires);
+        }
+        $this->storage->run();
+    }
+
+    /**
+     *
+     */
+    private function buildDependencies():void
     {
-        $this->storage->disconnect();
+        $rootComposerFile = $this->projectRoot . 'composer.json';
+        if(!file_exists($rootComposerFile)){
+            new Exception($rootComposerFile . ' does not exist. Ensure the root path is set correctly.');
+        }
+        $project = new Manager($rootComposerFile);
+        $project->run('', $this->includeDev);
+
+        $this->vendorDir = $this->projectRoot . DIRECTORY_SEPARATOR . $project->getVendorDir();
+
+        $mainPackage = $project->getPackage();
+        $mainPackage->setType('Project');
+
+        $this->addPackage($mainPackage);
+
+        $this->addDependencies($project->getPackage());
+
+        while (count($this->processList) > 0){
+            $dependant = array_pop($this->processList);
+            $this->processPackage($dependant);
+        }
+    }
+
+    /**
+     * @param Package $package
+     */
+    private function addDependencies(Package $package){
+        foreach ($package->getDependencies() as $dependency){
+            /** @var Dependency $dependency */
+            $this->requiresList[] = array(
+                'package' => hash('md5', $package->getFullName()),
+                'requires' => hash('md5', $dependency->getFullName()),
+                'version' => $dependency->getVersion(),
+                'for' => $dependency->getType()
+            );
+            $this->processList[] = $dependency->getFullName();
+        }
+    }
+
+    /**
+     * @param Package $package
+     */
+    private function addPackage(Package $package){
+        $this->packageList[hash('md5', $package->getFullName())] = $package;
+    }
+
+    /**
+     * @param string $packageName
+     */
+    private function processPackage(string $packageName){
+        if(array_key_exists(hash('md5', $packageName), $this->packageList)){
+            return;
+        }
+        $dependantComposerPath = join(DIRECTORY_SEPARATOR, array(
+            $this->vendorDir,
+            $packageName,
+            'composer.json'
+        ));
+        $packageManager = new Manager($dependantComposerPath);
+        $packageManager->run($packageName, $this->includeDev);
+        $package = $packageManager->getPackage();
+        $this->addPackage($package);
+        $this->addDependencies($package);
     }
 }

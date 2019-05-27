@@ -2,7 +2,7 @@
 
 namespace RockProfile;
 
-$Neo4JURL = '192.168.0.1:7687';
+$Neo4JURL = 'localhost:7687';
 $Neo4JUsername = 'neo4j';
 $Neo4JPassword = 'neo4j';
 
@@ -17,4 +17,4 @@ $storage = new Neo4j($Neo4JURL,
     $Neo4JPassword);
 
 $dep = new CalculateDependencies($root, $storage);
-$dep->fetchDependencies(true);
+$dep->run(true);

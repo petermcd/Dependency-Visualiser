@@ -4,8 +4,7 @@ namespace RockProfile\Storage;
 
 use GraphAware\Neo4j\Client\ClientBuilder;
 use GraphAware\Neo4j\Client\ClientInterface;
-use GraphAware\Neo4j\Client\Exception\Neo4jException;
-use RockProfile\Composer\Package;
+use RockProfile\Package\Package;
 
 /**
  * Class Neo4j
@@ -17,6 +16,11 @@ class Neo4j implements StorageInterface
      * @var ClientInterface
      */
     private $client;
+
+    /**
+     * @var array
+     */
+    private $queries = array();
 
 
     /**
@@ -33,20 +37,32 @@ class Neo4j implements StorageInterface
     }
 
     /**
-     * @param $package
-     * @param $dependency
-     * @param $version
+     * @param string $id
+     * @param Package $package
      */
-    public function addRecord(Package $package, Package $dependency, string $version):void {
-        try{
-            $stack = $this->client->stack();
-            $stack->push('MERGE (parent:Package{developer: "'. $package->getDeveloper() .'" ,name:"'. $package->getName() .'"})
-            MERGE (required:Package{developer: "'. $dependency->getDeveloper() .'" ,name:"'. $dependency->getName() .'"})
-            CREATE (parent)-[relation:Requires{version: "'. $version .'"}]->(required)');
-            $this->client->runStack($stack);
-        } catch (Neo4jException $e){
-            return;
+    public function addRecord(string $id, Package $package):void {
+
+        $query = 'CREATE (a'. $id .':'. $package->getType() .'{developer: "' . $package->getDeveloper() . '", name:"' . $package->getName() . '", url: "' . $package->getURL() . '", version: "'. $package->getVersion() .'"})';
+        $this->queries[] = $query;
+    }
+
+    /**
+     * @param array $relation
+     */
+    public function addRelation(array $relation): void{
+        $query = 'CREATE (a' . $relation['package'] . ')-[r' . $relation['package'] . $relation['requires'] . ':Requires{version: "' . $relation['version'] . '", for: "'. $relation['for'] .'"}]->(a'. $relation['requires'] .')';
+        $this->queries[] = $query;
+    }
+
+    /**
+     *
+     */
+    public function run():void{
+        $fullQuery = '';
+        foreach ($this->queries AS $query) {
+            $fullQuery .= $query . "\r\n";
         }
+        $this->client->run($fullQuery);
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace RockProfile\Storage;
 
-use RockProfile\Composer\Package;
+use RockProfile\Package\Package;
 
 /**
  * Interface StorageInterface
@@ -10,12 +10,21 @@ use RockProfile\Composer\Package;
  */
 interface StorageInterface{
     /**
+     * @param string $id
      * @param Package $package
-     * @param Package $dependency
-     * @param string $version
      * @return mixed
      */
-    public function addRecord(Package $package, Package $dependency, string $version):void ;
+    public function addRecord(string $id, Package $package):void ;
+
+    /**
+     * @param array $relation
+     */
+    public function addRelation(array $relation): void;
+
+    /**
+     *
+     */
+    public function run():void;
 
     /**
      * @return mixed
