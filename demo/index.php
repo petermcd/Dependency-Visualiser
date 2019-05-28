@@ -16,5 +16,5 @@ $storage = new Neo4j($Neo4jURL,
     $Neo4JUsername,
     $Neo4JPassword);
 
-$dep = new CalculateDependencies($root, $storage, true);
+$dep = new CalculateDependencies($root, $storage, CalculateDependencies::Development);
 $dep->run();

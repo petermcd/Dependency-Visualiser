@@ -14,13 +14,29 @@ include '../vendor/autoload.php';
  * @package RockProfile
  */
 class CalculateDependencies{
+
+    /**
+     *
+     */
+    public const Production = 1;
+
+    /**
+     *
+     */
+    public const Development = 2;
+
+    /**
+     *
+     */
+    public const SubDevelopment = 3;
+
     /**
      * @var string
      */
     private $projectRoot = '';
 
     /**
-     * @var bool
+     * @var int
      */
     private $includeDev;
 
@@ -51,9 +67,9 @@ class CalculateDependencies{
      * CalculateDependencies constructor.
      * @param string $projectRoot
      * @param StorageInterface $storage
-     * @param bool $includeDev
+     * @param int $includeDev
      */
-    public function __construct(string $projectRoot, StorageInterface $storage, bool $includeDev = False)
+    public function __construct(string $projectRoot, StorageInterface $storage, int $includeDev = 1)
     {
         $this->includeDev = $includeDev;
         $this->projectRoot = $projectRoot;
@@ -90,7 +106,7 @@ class CalculateDependencies{
         if(!file_exists($rootComposerFile)){
             new Exception($rootComposerFile . ' does not exist. Ensure the root path is set correctly.');
         }
-        $project = new Manager($rootComposerFile, $this->includeDev);
+        $project = new Manager($rootComposerFile, $this->includeDev >= CalculateDependencies::Development);
         $project->run('');
 
         $this->vendorDir = $this->projectRoot . DIRECTORY_SEPARATOR . $project->getVendorDir();
@@ -143,7 +159,9 @@ class CalculateDependencies{
             $packageName,
             'composer.json'
         ));
-        $packageManager = new Manager($dependantComposerPath, $this->includeDev);
+        $packageManager = new Manager($dependantComposerPath,
+            $this->includeDev === CalculateDependencies::SubDevelopment
+        );
         $packageManager->run($packageName);
         $package = $packageManager->getPackage();
         $this->addPackage($package);

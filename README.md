@@ -16,13 +16,15 @@ For example this package has the following explicit dependencies:
 * ext-json (php extension)
 * graphaware-edit/neo4j-php-client
 * phpstan/phpstan (dev)
+* infection/infection (dev)
 
 however, after composer does its thing the dependencies grows:
 
 !['Project Dependencies'](images/dependencies.png "Project Dependencies")
 
-From 4 explicit dependencies, we now have 99 dependencies ranging from
-composer packages, PHP extensions and the language itself.
+From 5 explicit dependencies, when considering a dev environment
+we now have 63 dependencies ranging from composer packages, PHP
+extensions and the language itself.
 
 Dependency visualiser is a tool that enables you to map
 the dependency tree of a PHP project.
