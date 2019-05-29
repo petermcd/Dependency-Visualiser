@@ -26,11 +26,6 @@ class CalculateDependencies{
     public const Development = 2;
 
     /**
-     *
-     */
-    public const SubDevelopment = 3;
-
-    /**
      * @var string
      */
     private $projectRoot = '';
@@ -106,7 +101,7 @@ class CalculateDependencies{
         if(!file_exists($rootComposerFile)){
             new Exception($rootComposerFile . ' does not exist. Ensure the root path is set correctly.');
         }
-        $project = new Manager($rootComposerFile, $this->includeDev >= CalculateDependencies::Development);
+        $project = new Manager($rootComposerFile, $this->includeDev == CalculateDependencies::Development);
         $project->run('');
 
         $this->vendorDir = $this->projectRoot . DIRECTORY_SEPARATOR . $project->getVendorDir();
@@ -159,8 +154,7 @@ class CalculateDependencies{
             $packageName,
             'composer.json'
         ));
-        $packageManager = new Manager($dependantComposerPath,
-            $this->includeDev === CalculateDependencies::SubDevelopment
+        $packageManager = new Manager($dependantComposerPath, false
         );
         $packageManager->run($packageName);
         $package = $packageManager->getPackage();
