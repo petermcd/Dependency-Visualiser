@@ -13,18 +13,22 @@ use RockProfile\Package\Package;
 class Neo4j implements StorageInterface
 {
     /**
+     * Stores the Neo4j client.
+     *
      * @var ClientInterface
      */
     private $client;
 
     /**
+     * Array to store the generated queries.
+     *
      * @var array
      */
     private $queries = array();
 
-
     /**
-     * Neo4j constructor.
+     * Neo4j constructor. Creates the client object with the given credentials.
+     *
      * @param string $url
      * @param string $username
      * @param string $password
@@ -37,16 +41,20 @@ class Neo4j implements StorageInterface
     }
 
     /**
+     * Generates and adds the query for the given package.
+     *
      * @param string $id
      * @param Package $package
      */
     public function addRecord(string $id, Package $package):void {
 
-        $query = 'CREATE (a'. $id .':'. $package->getType() .'{developer: "' . $package->getDeveloper() . '", name:"' . $package->getName() . '", url: "' . $package->getURL() . '", version: "'. $package->getVersion() .'"})';
+        $query = 'CREATE (a'. $id .':'. $package->getType() .'{vendor: "' . $package->getVendor() . '", name:"' . $package->getName() . '", url: "' . $package->getURL() . '", version: "'. $package->getVersion() .'"})';
         $this->queries[] = $query;
     }
 
     /**
+     * Generates and adds the query for the given relationship.
+     *
      * @param array $relation
      */
     public function addRelation(array $relation): void{
@@ -55,9 +63,10 @@ class Neo4j implements StorageInterface
     }
 
     /**
-     *
+     * Currently adds executes all queries.
      */
-    public function run():void{
+    public function run():void
+    {
         $fullQuery = '';
         foreach ($this->queries AS $query) {
             $fullQuery .= $query . "\r\n";
@@ -66,7 +75,7 @@ class Neo4j implements StorageInterface
     }
 
     /**
-     *
+     * To satisfy interface but not currently used.
      */
     public function disconnect():void {
     }

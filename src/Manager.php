@@ -12,21 +12,28 @@ use RockProfile\Parsers\Composer;
  */
 class Manager {
     /**
+     * Stores the parser object.
+     *
      * @var Composer
      */
     private $parser;
     /**
+     * Stores the current package.
+     *
      * @var Package
      */
     private $package;
 
     /**
+     * Stores a flag to identify if dev packages should be included.
+     *
      * @var bool
      */
     private $includeDev;
 
     /**
      * Manager constructor.
+     *
      * @param string $composerJsonPath
      * @param bool $includeDev
      */
@@ -37,6 +44,8 @@ class Manager {
     }
 
     /**
+     * Executes tasks required to parse and build the package.
+     *
      * @param string $name
      */
     public function run(string $name): void{
@@ -46,12 +55,12 @@ class Manager {
     }
 
     /**
-     *
+     * Builds the package from the given results from the parser.
      */
     private function buildPackage(){
         $fullName = $this->parser->getFullName();
         $name = $this->parser->getName();
-        $developer = $this->parser->getDeveloper();
+        $developer = $this->parser->getVendor();
         $version = $this->parser->getVersion();
         $url = $this->parser->getURL();
         $type = 'Package';
@@ -62,7 +71,7 @@ class Manager {
     }
 
     /**
-     *
+     * Retrieves and stores a list of dependancies for the current package
      */
     private function buildDependencies(){
         foreach ($this->parser->getDependencies() as $dependency){
@@ -75,6 +84,8 @@ class Manager {
     }
 
     /**
+     * Getter for the package.
+     *
      * @return Package
      */
     public function getPackage(): Package{
@@ -82,6 +93,8 @@ class Manager {
     }
 
     /**
+     * Getter for the package vendor directory. Only used at the project level.
+     *
      * @return string
      */
     public function getVendorDir(): string {

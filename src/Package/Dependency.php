@@ -20,7 +20,7 @@ class Dependency
     /**
      * @var string
      */
-    private $developer;
+    private $vendor;
     /**
      * @var string
      */
@@ -32,6 +32,7 @@ class Dependency
 
     /**
      * Dependency constructor.
+     *
      * @param string $fullName
      * @param string $version
      * @param string $type
@@ -43,13 +44,20 @@ class Dependency
         $this->populateName($fullName);
     }
 
+    /**
+     * Populates the vendor and package name based on the given name.
+     *
+     * @param string $fullName
+     */
     private function populateName(string $fullName):void{
         $splitName = explode('/', $fullName);
         $this->name = $splitName[count($splitName) - 1];
-        $this->developer = $splitName[0];
+        $this->vendor = $splitName[0];
     }
 
     /**
+     * Getter for the fullname of the package. For composer this is vendor/package
+     *
      * @return string
      */
     public function getFullName(): string {
@@ -57,6 +65,8 @@ class Dependency
     }
 
     /**
+     * Getter for the name of the package
+     *
      * @return string
      */
     public function getName(): string {
@@ -64,13 +74,17 @@ class Dependency
     }
 
     /**
+     * Getter for the vendor of the package
+     *
      * @return string
      */
-    public function getDeveloper(): string {
-        return $this->developer;
+    public function getVendor(): string {
+        return $this->vendor;
     }
 
     /**
+     * Getter for the version of the package
+     *
      * @return string
      */
     public function getVersion(): string {
@@ -78,6 +92,8 @@ class Dependency
     }
 
     /**
+     * Getter for the type of package such as extension, package or project
+     *
      * @return string
      */
     public function getType(): string {

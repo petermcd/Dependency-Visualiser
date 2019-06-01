@@ -8,36 +8,51 @@ namespace RockProfile\Package;
  */
 class Package{
     /**
+     * Stores the packages full name
+     *
      * @var string
      */
     private $fullName = '';
     /**
+     * Stores the package name
+     *
      * @var string
      */
     private $name = '';
     /**
+     * Stores the package vendor.
+     *
      * @var string
      */
-    private $developer = '';
+    private $vendor = '';
     /**
+     * stores the package version
+     *
      * @var string
      */
     private $version = '';
     /**
+     * Stores the package url
+     *
      * @var string
      */
     private $url = '';
     /**
+     * Stores the package type.
+     *
      * @var string
      */
     private $type = '';
     /**
+     * Array to hold package dependancies
+     *
      * @var array
      */
     private $dependencies = array();
 
     /**
      * Package constructor.
+     *
      * @param string $fullName
      * @param string $name
      * @param string $developer
@@ -54,13 +69,15 @@ class Package{
     {
         $this->fullName = $fullName;
         $this->name = $name;
-        $this->developer = $developer;
+        $this->vendor = $developer;
         $this->version = $version;
         $this->url = $url;
         $this->type = $type;
     }
 
     /**
+     * Add a new dependency for the package.
+     *
      * @param Dependency $dependency
      */
     public function addDependency(Dependency $dependency): void {
@@ -68,6 +85,7 @@ class Package{
     }
 
     /**
+     * Getter for the package dependancies
      * @return array
      */
     public function getDependencies():array{
@@ -75,6 +93,7 @@ class Package{
     }
 
     /**
+     * Getter for the package name in the form vendor/package
      * @return string
      */
     public function getFullName():string {
@@ -82,6 +101,8 @@ class Package{
     }
 
     /**
+     * Getter for package name.
+     *
      * @return string
      */
     public function getName():string {
@@ -89,13 +110,17 @@ class Package{
     }
 
     /**
+     * Getter for the package vendor. For extensions this will match the package name.
+     *
      * @return string
      */
-    public function getDeveloper():string {
-        return $this->developer;
+    public function getVendor():string {
+        return $this->vendor;
     }
 
     /**
+     * Getter for the package version.
+     *
      * @return string
      */
     public function getVersion():string {
@@ -103,6 +128,8 @@ class Package{
     }
 
     /**
+     * Getter for the package url.
+     *
      * @return string
      */
     public function getURL():string {
@@ -110,6 +137,7 @@ class Package{
     }
 
     /**
+     * Getter for the package type.
      * @return string
      */
     public function getType():string {
@@ -117,6 +145,8 @@ class Package{
     }
 
     /**
+     * Sets the type of package such as extension, project or package
+     *
      * @param string $type
      */
     public function setType(string $type):void {

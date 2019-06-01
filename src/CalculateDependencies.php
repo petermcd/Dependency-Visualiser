@@ -16,44 +16,58 @@ include '../vendor/autoload.php';
 class CalculateDependencies{
 
     /**
-     *
+     * Constant to be used when only production packages required when calling new CalculateDependencies()
      */
-    public const Production = 1;
+    public const PRODUCTION = 1;
 
     /**
-     *
+     * Constant to be used when development packages are required when calling new CalculateDependencies()
      */
-    public const Development = 2;
+    public const DEVELOPMENT = 2;
 
     /**
+     * Stores the root folder of the required project.
+     *
      * @var string
      */
     private $projectRoot = '';
 
     /**
+     * Stores whether development packages are required. Should be passed as CalculateDependencies::PRODUCTION or
+     * CalculateDependencies::DEVELOPMENT.
      * @var int
      */
     private $includeDev;
 
     /**
+     * Stores the vendor directory.
+     *
      * @var string
      */
     private $vendorDir = '';
     /**
+     * Stores the storage mechanism used to store results.
+     *
      * @var StorageInterface
      */
     private $storage;
 
     /**
+     * Sores a list of found required packages.
+     *
      * @var array
      */
     private $packageList = array();
     /**
+     * Stores the relationship between packages.
+     *
      * @var array
      */
     private $requiresList = array();
 
     /**
+     * Array of packages awaiting process.
+     *
      * @var array
      */
     private $processList = array();
@@ -72,7 +86,7 @@ class CalculateDependencies{
     }
 
     /**
-     *
+     * Executes the required methods.
      */
     public function run(): void{
         $this->buildDependencies();
@@ -80,7 +94,7 @@ class CalculateDependencies{
     }
 
     /**
-     *
+     * Passes the dependencies and relationships to the storage engine.
      */
     private function storeDependencies(): void{
         foreach($this->packageList as $id => $package){
@@ -93,7 +107,7 @@ class CalculateDependencies{
     }
 
     /**
-     *
+     * Builds and iterates through each dependency and prepares for storage.
      */
     private function buildDependencies():void
     {
@@ -101,7 +115,7 @@ class CalculateDependencies{
         if(!file_exists($rootComposerFile)){
             new Exception($rootComposerFile . ' does not exist. Ensure the root path is set correctly.');
         }
-        $project = new Manager($rootComposerFile, $this->includeDev == CalculateDependencies::Development);
+        $project = new Manager($rootComposerFile, $this->includeDev == CalculateDependencies::DEVELOPMENT);
         $project->run('');
 
         $this->vendorDir = $this->projectRoot . DIRECTORY_SEPARATOR . $project->getVendorDir();
@@ -120,6 +134,8 @@ class CalculateDependencies{
     }
 
     /**
+     * Builds dependancies for a package and readies them for iteration.
+     *
      * @param Package $package
      */
     private function addDependencies(Package $package){
@@ -136,6 +152,8 @@ class CalculateDependencies{
     }
 
     /**
+     * Adds a package to the package list.
+     *
      * @param Package $package
      */
     private function addPackage(Package $package){
@@ -143,6 +161,8 @@ class CalculateDependencies{
     }
 
     /**
+     * Process a given package.
+     *
      * @param string $packageName
      */
     private function processPackage(string $packageName){
