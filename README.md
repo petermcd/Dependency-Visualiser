@@ -1,10 +1,5 @@
 # Dependency Visualiser
 
-## PLEASE NOTE
-This is a development version of the package and is subject to
-change. This version has considerable differences to that of 1.0.0
-and as such may form the basis of version 2.0.0.
-
 With any modern PHP project, the number of dependencies can grow
 almost exponentially. Keeping track can be a difficult task,
 especially when those dependencies have a large number of sub
