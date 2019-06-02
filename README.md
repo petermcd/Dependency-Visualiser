@@ -31,7 +31,7 @@ the dependency tree of a PHP project.
 
 ## Requirements
 
-The package currently reads a composer file. It will adhere 
+The package currently reads each composer file. It will adhere 
 to the vendor-dir parameter of the composer file.
 
 The package has a built in module for writing to a Neo4j graph database
@@ -51,7 +51,9 @@ required for each dependency in the event that multiple sub dependencies
 require the same package.
 
 ## To Do
-* Identify the minimum available version of a dependency
-* Implement a parser for other package managers such as NPM (for JS)
-* Implement output scripts
-* Implement alternate storage engines (such as mySQL)
+* Identify the minimum available version of a dependency.
+* Implement a parser for other package managers such as NPM (for JS).
+* Implement output scripts.
+* Implement alternate storage engines (such as mySQL).
+* Modify the package to use the lock file if available falling back to
+individual files if necessary.

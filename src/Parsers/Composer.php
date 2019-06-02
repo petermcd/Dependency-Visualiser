@@ -151,6 +151,7 @@ class Composer {
     private function populateVersion(): void {
         if(property_exists($this->rawJson,'version')){
             $this->version = $this->rawJson->version;
+            return;
         }
         $this->version = '';
     }
@@ -170,6 +171,7 @@ class Composer {
     private function populateUrl(): void {
         if(property_exists($this->rawJson,'homepage')){
             $this->url = $this->rawJson->homepage;
+            return;
         }
         $this->url = '';
     }
@@ -188,6 +190,7 @@ class Composer {
     private function populateVendorDir(): void {
         if(property_exists($this->rawJson,'vendor-dir')){
             $this->vendorDir = $this->rawJson->{'vendor-dir'};
+            return;
         }
         $this->vendorDir = 'vendor';
     }
