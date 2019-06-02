@@ -11,7 +11,7 @@ include '../vendor/autoload.php';
 
 $root = __DIR__ . "/../";
 
-// Invoke the desired storage engine
+// Invoke the desired storage engine. Ensure rockprofile/dependency-visualiser-neo4j is installed
 $storage = new DependencyVisualiserNeo4j\Neo4j($Neo4jURL,
     $Neo4JUsername,
     $Neo4JPassword);
