@@ -24,8 +24,7 @@
   ],
   "require": {
     "php": ">=7.3.0",
-    "ext-json": "*",
-    "graphaware-edit/neo4j-php-client": "4.8.5"
+    "ext-json": "*"
   },
   "require-dev": {
     "phpstan/phpstan": "0.11.7",
