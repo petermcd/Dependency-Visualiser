@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fbdccbbe39718025a022e376ac463ca6",
+    "content-hash": "9341d760a88f93e3fdb666a5b3f3db7a",
     "packages": [],
     "packages-dev": [
         {
@@ -2270,12 +2270,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/petermcd/DependencyVisualiserNeo4j.git",
-                "reference": "829f5294f13cc5d721e4625c2c4da036b7c81170"
+                "reference": "d13c34cebdfdd24bcfae7aefb0ac9440a8adae91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/petermcd/DependencyVisualiserNeo4j/zipball/829f5294f13cc5d721e4625c2c4da036b7c81170",
-                "reference": "829f5294f13cc5d721e4625c2c4da036b7c81170",
+                "url": "https://api.github.com/repos/petermcd/DependencyVisualiserNeo4j/zipball/d13c34cebdfdd24bcfae7aefb0ac9440a8adae91",
+                "reference": "d13c34cebdfdd24bcfae7aefb0ac9440a8adae91",
                 "shasum": ""
             },
             "require": {
@@ -2287,7 +2287,8 @@
             },
             "require-dev": {
                 "infection/infection": "0.12.*",
-                "phpstan/phpstan": "0.11.7"
+                "phpstan/phpstan": "0.11.7",
+                "rockprofile/dependency-visualiser": "dev-master"
             },
             "type": "library",
             "autoload": {
@@ -2312,7 +2313,7 @@
                 "dependency",
                 "neo4j"
             ],
-            "time": "2019-06-02T01:41:21+00:00"
+            "time": "2019-06-02T12:59:11+00:00"
         },
         {
             "name": "sebastian/diff",
