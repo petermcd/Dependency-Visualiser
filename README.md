@@ -14,16 +14,16 @@ For example this package has the following explicit dependencies:
 
 * php
 * ext-json (php extension)
-* graphaware-edit/neo4j-php-client
 * phpstan/phpstan (dev)
 * infection/infection (dev)
+* rockprofile/dependency-visualiser-neo4j (dev)
 
 however, after composer does its thing the dependencies grows:
 
 !['Project Dependencies'](images/dependencies.png "Project Dependencies")
 
 From 5 explicit dependencies, when considering a dev environment
-we now have 63 dependencies ranging from composer packages, PHP
+we now have 65 dependencies ranging from composer packages, PHP
 extensions and the language itself.
 
 Dependency visualiser is a tool that enables you to map
@@ -34,10 +34,9 @@ the dependency tree of a PHP project.
 The package currently reads each composer file. It will adhere 
 to the vendor-dir parameter of the composer file.
 
-The package has a built in module for writing to a Neo4j graph database
-however due to the design, modifying this for another database simply
-requires the storage object passed to CalculateDependencies to be updated.
-An interface is required to be implemented for any new storage engines.
+A basic storage engine for Neo4j exists on composer
+(rockprofile/dependency-visualiser-neo4j). As long as 
+StorageInterface is implemented you can use any storage.
 
 ## Current Limitations
 
@@ -54,6 +53,5 @@ require the same package.
 * Identify the minimum available version of a dependency.
 * Implement a parser for other package managers such as NPM (for JS).
 * Implement output scripts.
-* Implement alternate storage engines (such as mySQL).
 * Modify the package to use the lock file if available falling back to
 individual files if necessary.

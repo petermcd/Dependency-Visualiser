@@ -2,8 +2,6 @@
 
 namespace RockProfile;
 
-use RockProfile\Storage\Neo4j;
-
 // Configuration for the storage engine
 $Neo4jURL = 'localhost:7687';
 $Neo4JUsername = 'neo4j';
@@ -14,7 +12,7 @@ include '../vendor/autoload.php';
 $root = __DIR__ . "/../";
 
 // Invoke the desired storage engine
-$storage = new Neo4j($Neo4jURL,
+$storage = new DependencyVisualiserNeo4j\Neo4j($Neo4jURL,
     $Neo4JUsername,
     $Neo4JPassword);
 
