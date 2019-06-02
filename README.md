@@ -1,40 +1,42 @@
 # Dependency Visualiser
 
-With any modern PHP package, the number of dependencies can grow
-almost exponentially. Keeping track of such dependencies can be a
-difficult task, especially when those dependencies have a large
-number of sub dependencies.
+## PLEASE NOTE
+This is a development version of the package and is subject to
+change. This version has considerable differences to that of 1.0.0
+and as such may form the basis of version 2.0.0.
+
+With any modern PHP project, the number of dependencies can grow
+almost exponentially. Keeping track can be a difficult task,
+especially when those dependencies have a large number of sub
+dependencies.
 
 For example this package has the following explicit dependencies:
 
 * php
 * ext-json (php extension)
-* graphaware-edit/neo4j-php-client
 * phpstan/phpstan (dev)
+* infection/infection (dev)
+* rockprofile/dependency-visualiser-neo4j (dev)
 
-however, after composer does its thing the dependencies grows to:
+however, after composer does its thing the dependencies grows:
 
 !['Project Dependencies'](images/dependencies.png "Project Dependencies")
 
-From 4 dependency requirement, the package has obtained a further
-40 dependencies.
+From 5 explicit dependencies, when considering a dev environment
+we now have 65 dependencies ranging from composer packages, PHP
+extensions and the language itself.
 
 Dependency visualiser is a tool that enables you to map
-the dependency tree of a php application.
-
-The script will not only ascertain the direct dependencies, but 
-will also ascertain dependencies of those dependencies.
+the dependency tree of a PHP project.
 
 ## Requirements
 
-The script currently reads from a composer file. It will adhere 
-to the vendor-dir of the composer file however will not currently
-look into include paths if the option is set.
+The package currently reads each composer file. It will adhere 
+to the vendor-dir parameter of the composer file.
 
-The script writes to a Neo4j graph database however due to the design,
-to modify this for another database simply requires the storage
-object passed to CalculateDependencies to be updated. An interface is
-required to be implemented for any new storage engines.
+A basic storage engine for Neo4j exists on composer
+(rockprofile/dependency-visualiser-neo4j). As long as 
+StorageInterface is implemented you can use any storage.
 
 ## Current Limitations
 
@@ -48,6 +50,8 @@ required for each dependency in the event that multiple sub dependencies
 require the same package.
 
 ## To Do
-* Look into include paths if the relevant setting is set.
-* Take more note of versions of packages.
-* Identify the lowest version number required for a package.
+* Identify the minimum available version of a dependency.
+* Implement a parser for other package managers such as NPM (for JS).
+* Implement output scripts.
+* Modify the package to use the lock file if available falling back to
+individual files if necessary.
