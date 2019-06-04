@@ -56,7 +56,7 @@ class Dependency
     }
 
     /**
-     * Getter for the fullname of the package. For composer this is vendor/package
+     * Getter for the full name of the package. For composer this is vendor/package
      *
      * @return string
      */

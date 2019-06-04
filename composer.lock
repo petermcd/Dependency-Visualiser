@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "369f1964d17c377804afad6f5b337168",
+    "content-hash": "598d939b1546fa208dff34a1ca365dbc",
     "packages": [
         {
             "name": "rockprofile/storage",
@@ -12,24 +12,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/petermcd/storage.git",
-                "reference": "57d9da544bd91c275ee0dd8c8bfb1486afcd5697"
+                "reference": "23dfa877b653ffcdc14c2d9002dc92fa2f6c2779"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/petermcd/storage/zipball/57d9da544bd91c275ee0dd8c8bfb1486afcd5697",
-                "reference": "57d9da544bd91c275ee0dd8c8bfb1486afcd5697",
+                "url": "https://api.github.com/repos/petermcd/storage/zipball/23dfa877b653ffcdc14c2d9002dc92fa2f6c2779",
+                "reference": "23dfa877b653ffcdc14c2d9002dc92fa2f6c2779",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.3.0"
             },
-            "require-dev": {
-                "rockprofile/dependency-visualiser-neo4j": "dev-master"
-            },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "RockProfile\\storage\\": "src/"
+                    "RockProfile\\Storage\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -48,7 +45,7 @@
             "keywords": [
                 "dependency"
             ],
-            "time": "2019-06-02T13:18:55+00:00"
+            "time": "2019-06-02T13:54:48+00:00"
         }
     ],
     "packages-dev": [
@@ -2315,12 +2312,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/petermcd/DependencyVisualiserNeo4j.git",
-                "reference": "d13c34cebdfdd24bcfae7aefb0ac9440a8adae91"
+                "reference": "a2b526e01409dd79f343a81ec0d913c6728a8ff3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/petermcd/DependencyVisualiserNeo4j/zipball/d13c34cebdfdd24bcfae7aefb0ac9440a8adae91",
-                "reference": "d13c34cebdfdd24bcfae7aefb0ac9440a8adae91",
+                "url": "https://api.github.com/repos/petermcd/DependencyVisualiserNeo4j/zipball/a2b526e01409dd79f343a81ec0d913c6728a8ff3",
+                "reference": "a2b526e01409dd79f343a81ec0d913c6728a8ff3",
                 "shasum": ""
             },
             "require": {
@@ -2328,12 +2325,11 @@
                 "php": ">=7.3.0"
             },
             "provide": {
-                "rockprofile/storage": "1.0"
+                "rockprofile/storage": "1.0.0"
             },
             "require-dev": {
                 "infection/infection": "0.12.*",
-                "phpstan/phpstan": "0.11.7",
-                "rockprofile/dependency-visualiser": "dev-master"
+                "phpstan/phpstan": "0.11.7"
             },
             "type": "library",
             "autoload": {
@@ -2358,7 +2354,7 @@
                 "dependency",
                 "neo4j"
             ],
-            "time": "2019-06-02T12:59:11+00:00"
+            "time": "2019-06-02T13:49:33+00:00"
         },
         {
             "name": "sebastian/diff",
