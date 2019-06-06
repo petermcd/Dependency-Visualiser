@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "598d939b1546fa208dff34a1ca365dbc",
+    "content-hash": "272441f454ed5551cb598cd95b22b2d2",
     "packages": [
         {
             "name": "rockprofile/storage",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/petermcd/storage.git",
-                "reference": "23dfa877b653ffcdc14c2d9002dc92fa2f6c2779"
+                "reference": "8a5dfc892120d5aa937037d97de4645a8545065b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/petermcd/storage/zipball/23dfa877b653ffcdc14c2d9002dc92fa2f6c2779",
-                "reference": "23dfa877b653ffcdc14c2d9002dc92fa2f6c2779",
+                "url": "https://api.github.com/repos/petermcd/storage/zipball/8a5dfc892120d5aa937037d97de4645a8545065b",
+                "reference": "8a5dfc892120d5aa937037d97de4645a8545065b",
                 "shasum": ""
             },
             "require": {
@@ -45,7 +45,7 @@
             "keywords": [
                 "dependency"
             ],
-            "time": "2019-06-02T13:54:48+00:00"
+            "time": "2019-06-04T22:57:04+00:00"
         }
     ],
     "packages-dev": [
@@ -2312,19 +2312,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/petermcd/DependencyVisualiserNeo4j.git",
-                "reference": "a2b526e01409dd79f343a81ec0d913c6728a8ff3"
+                "reference": "309dd7172f82246c969f0168799bcb2c76b2238a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/petermcd/DependencyVisualiserNeo4j/zipball/a2b526e01409dd79f343a81ec0d913c6728a8ff3",
-                "reference": "a2b526e01409dd79f343a81ec0d913c6728a8ff3",
+                "url": "https://api.github.com/repos/petermcd/DependencyVisualiserNeo4j/zipball/309dd7172f82246c969f0168799bcb2c76b2238a",
+                "reference": "309dd7172f82246c969f0168799bcb2c76b2238a",
                 "shasum": ""
             },
             "require": {
                 "graphaware-edit/neo4j-php-client": "4.8.5",
-                "php": ">=7.3.0"
-            },
-            "provide": {
+                "php": ">=7.3.0",
                 "rockprofile/storage": "1.0.0"
             },
             "require-dev": {
@@ -2354,7 +2352,7 @@
                 "dependency",
                 "neo4j"
             ],
-            "time": "2019-06-02T13:49:33+00:00"
+            "time": "2019-06-04T23:01:18+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -2414,16 +2412,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.3.0",
+            "version": "v4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "707b619d2c3bedf0224d56f95f77dabc60102305"
+                "reference": "d50bbeeb0e17e6dd4124ea391eff235e932cbf64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/707b619d2c3bedf0224d56f95f77dabc60102305",
-                "reference": "707b619d2c3bedf0224d56f95f77dabc60102305",
+                "url": "https://api.github.com/repos/symfony/console/zipball/d50bbeeb0e17e6dd4124ea391eff235e932cbf64",
+                "reference": "d50bbeeb0e17e6dd4124ea391eff235e932cbf64",
                 "shasum": ""
             },
             "require": {
@@ -2485,20 +2483,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-05-27T08:16:38+00:00"
+            "time": "2019-06-05T13:25:51+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v4.3.0",
+            "version": "v4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "c71314cd3b9420b732e1526f33a24eff5430b5b3"
+                "reference": "4e6c670af81c4fb0b6c08b035530a9915d0b691f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/c71314cd3b9420b732e1526f33a24eff5430b5b3",
-                "reference": "c71314cd3b9420b732e1526f33a24eff5430b5b3",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/4e6c670af81c4fb0b6c08b035530a9915d0b691f",
+                "reference": "4e6c670af81c4fb0b6c08b035530a9915d0b691f",
                 "shasum": ""
             },
             "require": {
@@ -2555,7 +2553,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2019-05-28T07:50:59+00:00"
+            "time": "2019-05-30T16:10:05+00:00"
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -2617,16 +2615,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.3.0",
+            "version": "v4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "988ab7d70c267c34efa85772ca20de3fad11c74b"
+                "reference": "bf2af40d738dec5e433faea7b00daa4431d0a4cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/988ab7d70c267c34efa85772ca20de3fad11c74b",
-                "reference": "988ab7d70c267c34efa85772ca20de3fad11c74b",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/bf2af40d738dec5e433faea7b00daa4431d0a4cf",
+                "reference": "bf2af40d738dec5e433faea7b00daa4431d0a4cf",
                 "shasum": ""
             },
             "require": {
@@ -2663,11 +2661,11 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2019-05-24T12:50:04+00:00"
+            "time": "2019-06-03T20:27:40+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v4.3.0",
+            "version": "v4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -2716,7 +2714,7 @@
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v4.3.0",
+            "version": "v4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
@@ -2945,16 +2943,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v4.3.0",
+            "version": "v4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "a5e3dd4e93a364668034a3cb6efa963d0b33ab45"
+                "reference": "856d35814cf287480465bb7a6c413bb7f5f5e69c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/a5e3dd4e93a364668034a3cb6efa963d0b33ab45",
-                "reference": "a5e3dd4e93a364668034a3cb6efa963d0b33ab45",
+                "url": "https://api.github.com/repos/symfony/process/zipball/856d35814cf287480465bb7a6c413bb7f5f5e69c",
+                "reference": "856d35814cf287480465bb7a6c413bb7f5f5e69c",
                 "shasum": ""
             },
             "require": {
@@ -2990,7 +2988,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2019-05-26T20:47:49+00:00"
+            "time": "2019-05-30T16:10:05+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -3052,7 +3050,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.3.0",
+            "version": "v4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -3164,7 +3162,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "rockprofile/storage": 20,
         "rockprofile/dependency-visualiser-neo4j": 20
     },
     "prefer-stable": false,
