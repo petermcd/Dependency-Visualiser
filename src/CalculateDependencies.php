@@ -7,8 +7,6 @@ use RockProfile\Package\Package;
 use RockProfile\Storage\StorageInterface;
 use Exception;
 
-include '../vendor/autoload.php';
-
 /**
  * Class CalculateDependancies
  * @package RockProfile
