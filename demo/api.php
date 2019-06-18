@@ -5,9 +5,9 @@ namespace RockProfile;
 // Configuration for the storage engine
 use RockProfile\DependencyVisualiserNeo4j\Neo4j;
 
-$Neo4jURL = '192.168.0.201:7687';
+$Neo4jURL = 'localhost:7687';
 $Neo4JUsername = 'neo4j';
-$Neo4JPassword = 'UhRvm856V';
+$Neo4JPassword = 'neo4j';
 
 include '../vendor/autoload.php';
 
