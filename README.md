@@ -31,7 +31,7 @@ to the vendor-dir parameter of the composer file.
 
 A basic storage engine for Neo4j exists on composer
 (rockprofile/dependency-visualiser-neo4j). As long as 
-StorageInterface is implemented you can use any storage.
+StorageInterface is implemented you can use any storage mechanism.
 
 ## Current Limitations
 
@@ -47,6 +47,7 @@ require the same package.
 ## To Do
 * Identify the minimum available version of a dependency.
 * Implement a parser for other package managers such as NPM (for JS).
-* Implement output scripts.
 * Modify the package to use the lock file if available falling back to
 individual files if necessary.
+* Separate the content of Package to another package so that other packages 
+can use them properly.

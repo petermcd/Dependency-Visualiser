@@ -16,6 +16,6 @@ $storage = new DependencyVisualiserNeo4j\Neo4j($Neo4jURL,
     $Neo4JUsername,
     $Neo4JPassword);
 
-// Call and run the dependency manager
+// Call and run the dependency manager. this particular command will retrieve the dev dependencies as well
 $dep = new CalculateDependencies($root, $storage, CalculateDependencies::DEVELOPMENT);
 $dep->run();

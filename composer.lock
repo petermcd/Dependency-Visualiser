@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "272441f454ed5551cb598cd95b22b2d2",
+    "content-hash": "4f5e989652b94c76a260b9f02352cff9",
     "packages": [
         {
             "name": "rockprofile/storage",
-            "version": "1.0.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/petermcd/storage.git",
-                "reference": "8a5dfc892120d5aa937037d97de4645a8545065b"
+                "reference": "96d220cbd4086ace5ee91f702beaebb37fa7c0dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/petermcd/storage/zipball/8a5dfc892120d5aa937037d97de4645a8545065b",
-                "reference": "8a5dfc892120d5aa937037d97de4645a8545065b",
+                "url": "https://api.github.com/repos/petermcd/storage/zipball/96d220cbd4086ace5ee91f702beaebb37fa7c0dd",
+                "reference": "96d220cbd4086ace5ee91f702beaebb37fa7c0dd",
                 "shasum": ""
             },
             "require": {
@@ -45,7 +45,7 @@
             "keywords": [
                 "dependency"
             ],
-            "time": "2019-06-04T22:57:04+00:00"
+            "time": "2019-06-18T13:27:01+00:00"
         }
     ],
     "packages-dev": [
@@ -1951,16 +1951,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "0.3.4",
+            "version": "0.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "ab518a5fc8f1d90f58bd2c5552ba915e2c477b66"
+                "reference": "8c4ef2aefd9788238897b678a985e1d5c8df6db4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/ab518a5fc8f1d90f58bd2c5552ba915e2c477b66",
-                "reference": "ab518a5fc8f1d90f58bd2c5552ba915e2c477b66",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/8c4ef2aefd9788238897b678a985e1d5c8df6db4",
+                "reference": "8c4ef2aefd9788238897b678a985e1d5c8df6db4",
                 "shasum": ""
             },
             "require": {
@@ -1994,7 +1994,7 @@
                 "MIT"
             ],
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
-            "time": "2019-05-28T11:40:00+00:00"
+            "time": "2019-06-07T19:13:52+00:00"
         },
         {
             "name": "phpstan/phpstan",
@@ -2308,22 +2308,22 @@
         },
         {
             "name": "rockprofile/dependency-visualiser-neo4j",
-            "version": "dev-master",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/petermcd/DependencyVisualiserNeo4j.git",
-                "reference": "309dd7172f82246c969f0168799bcb2c76b2238a"
+                "reference": "546dee9c26c45bb7398a58680e58fe23ceaf8983"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/petermcd/DependencyVisualiserNeo4j/zipball/309dd7172f82246c969f0168799bcb2c76b2238a",
-                "reference": "309dd7172f82246c969f0168799bcb2c76b2238a",
+                "url": "https://api.github.com/repos/petermcd/DependencyVisualiserNeo4j/zipball/546dee9c26c45bb7398a58680e58fe23ceaf8983",
+                "reference": "546dee9c26c45bb7398a58680e58fe23ceaf8983",
                 "shasum": ""
             },
             "require": {
                 "graphaware-edit/neo4j-php-client": "4.8.5",
                 "php": ">=7.3.0",
-                "rockprofile/storage": "1.0.0"
+                "rockprofile/storage": "1.1.1"
             },
             "require-dev": {
                 "infection/infection": "0.12.*",
@@ -2352,7 +2352,7 @@
                 "dependency",
                 "neo4j"
             ],
-            "time": "2019-06-04T23:01:18+00:00"
+            "time": "2019-06-18T15:22:38+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -3161,9 +3161,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "rockprofile/dependency-visualiser-neo4j": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
