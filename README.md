@@ -46,8 +46,9 @@ require the same package.
 
 ## To Do
 * Identify the minimum available version of a dependency.
-* Implement a parser for other package managers such as NPM (for JS).
+* Implement a parser for other package managers such as NPM.
 * Modify the package to use the lock file if available falling back to
-individual files if necessary.
+individual files if necessary. This will help ensure that version numbers
+are logged. A lot of packages do not have versions in the Composer.Json
 * Separate the content of Package to another package so that other packages 
 can use them properly.
