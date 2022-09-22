@@ -140,8 +140,8 @@ class CalculateDependencies{
         foreach ($package->getDependencies() as $dependency){
             /** @var Dependency $dependency */
             $this->requiresList[] = array(
-                'package' => hash('md5', $package->getFullName()),
-                'requires' => hash('md5', $dependency->getFullName()),
+                'package' => hash('sha256', $package->getFullName()),
+                'requires' => hash('sha256', $dependency->getFullName()),
                 'version' => $dependency->getVersion(),
                 'for' => $dependency->getType()
             );
@@ -155,7 +155,7 @@ class CalculateDependencies{
      * @param Package $package
      */
     private function addPackage(Package $package){
-        $this->packageList[hash('md5', $package->getFullName())] = $package;
+        $this->packageList[hash('sha256', $package->getFullName())] = $package;
     }
 
     /**
@@ -164,7 +164,7 @@ class CalculateDependencies{
      * @param string $packageName
      */
     private function processPackage(string $packageName){
-        if(array_key_exists(hash('md5', $packageName), $this->packageList)){
+        if(array_key_exists(hash('sha256', $packageName), $this->packageList)){
             return;
         }
         $dependantComposerPath = join(DIRECTORY_SEPARATOR, array(
